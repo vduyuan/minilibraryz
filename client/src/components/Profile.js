@@ -15,8 +15,8 @@ export default class Profile extends React.Component {
                 return(
                 <div className='col-md-3 border border-info'>
                     <img src={book.cover}></img>
-                    <h4>{book.title} by </h4>
-                    <h6>{book.author}</h6>
+                    <h4>{book.title}, </h4>
+                    <h6>by {book.author}</h6>
                     <p>{book.description}</p>
                 </div>
                 )

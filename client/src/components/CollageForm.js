@@ -35,7 +35,7 @@ export default class CollageForm extends React.Component {
         if ((typeof book.industryIdentifiers !== 'undefined') && (book.industryIdentifiers[0].type === 'ISBN_10') || ((book.industryIdentifiers[0].type === 'ISBN_13'))) {
             cover = openLibraryAPI + "isbn/" + (typeof book.industryIdentifiers != 'undefined' && book.industryIdentifiers[0].identifier) + '-M.jpg';
         } else {
-            cover = '/public/openBook.jpg';
+            cover = '/client/public/openBook.jpg';
         }
 
         this.setState({ title: book.title, author: typeof book.authors !== 'undefined' ? book.authors[0] : "Unknown", cover: cover, ready: true}); 
@@ -44,7 +44,7 @@ export default class CollageForm extends React.Component {
     handleSubmit() {
         if (this.state.ready) {
             this.props.submit(this.state); 
-            this.setState({ready: false, title: '', author: '', cover: '', error: ''});
+            this.setState({ready: false, title: '', author: '', cover: '', error: ''}, console.log("reset fields"));
         } else {
             this.setState({error: "Please select a book"});
         }
@@ -73,7 +73,7 @@ export default class CollageForm extends React.Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button type='submit' onClick={() => this.props.submit(this.state)}>Add to Library!</Button>
+                        <Button type='submit' onClick={this.handleSubmit}>Add to Library!</Button>
                         <p>{this.state.error}</p>
                     </Modal.Footer>
                 </Modal>
